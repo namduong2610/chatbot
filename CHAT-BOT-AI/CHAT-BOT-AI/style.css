@@ -1,0 +1,148 @@
+/*
+ * Thêm bình luận tiếng Việt vào code.
+ * Quy tắc chung cho toàn bộ trang
+ */
+body {
+  font-family: sans-serif;
+  margin: 0;
+  background-color: #f4f4f4;
+}
+
+/*
+ * Nút bấm để mở chat
+ */
+#chat-toggle-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex; /* Sử dụng flex để căn giữa icon */
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s;
+}
+
+#chat-toggle-btn:hover {
+  background-color: #0056b3;
+}
+
+/*
+ * Cửa sổ chat popup
+ */
+#chat-popup {
+  display: none; /* Mặc định ẩn đi */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 350px;
+  height: 500px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  flex-direction: column;
+  overflow: hidden; /* Đảm bảo các thành phần con không bị tràn ra ngoài */
+}
+
+/*
+ * Phần đầu của cửa sổ chat
+ */
+#chat-header {
+  background-color: #007bff;
+  color: white;
+  padding: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+}
+
+/*
+ * Khung chứa các tin nhắn
+ */
+#chat-box {
+  flex-grow: 1; /* Cho phép khung chat co giãn để lấp đầy không gian */
+  padding: 15px;
+  overflow-y: auto; /* Thêm thanh cuộn khi tin nhắn quá nhiều */
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Khoảng cách giữa các tin nhắn */
+}
+
+/*
+ * Định dạng cho từng tin nhắn
+ * Để phân biệt rõ hơn, bạn có thể sửa file JS để thêm class 'user-message' và 'bot-message'
+ */
+#chat-box div {
+  padding: 10px;
+  border-radius: 8px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+/* 
+  Gợi ý: trong file chat_bot.js, hàm addMessage có thể sửa thành:
+  function addMessage(sender, message) {
+    const msgDiv = document.createElement("div");
+    msgDiv.classList.add(sender === "user" ? "user-message" : "bot-message");
+    msgDiv.textContent = message;
+    chatBox.appendChild(msgDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+*/
+
+.user-message {
+  background-color: #007bff;
+  color: white;
+  align-self: flex-end; /* Tin nhắn người dùng ở bên phải */
+}
+
+.bot-message {
+  background-color: #e9e9eb;
+  color: #333;
+  align-self: flex-start; /* Tin nhắn của bot ở bên trái */
+}
+
+/*
+ * Phần nhập liệu và nút gửi
+ */
+#input-container {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+
+#user-input {
+  flex-grow: 1;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 10px 15px;
+  margin-right: 10px;
+  outline: none; /* Bỏ viền khi focus */
+  transition: border-color 0.3s;
+}
+
+#user-input:focus {
+    border-color: #007bff;
+}
+
+#send-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#send-btn:hover {
+  background-color: #0056b3;
+}
